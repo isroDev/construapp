@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Constru App | Administrator De Obra</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../administrator/dist/css/fine-uploader-new.css">
+    <link rel="stylesheet" href="../administrator/plugins/select2/css/select2.min.css">
+    <style>
+        #signature_capture {
+            width: 100%;
+            height: 7em;
+        }
+    </style>
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <div class="content-wrapper" style="margin-left: 0px">
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Detalles Del Proyecto</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="content">
+
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" id="obra_name">Projects Detail</h3><span id="link"></span>
+
+
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label style="font-weight: 500; font-size: 16px">Nombre De Obra</label>
+                                        <input type="text" id="construction" name="construction" class="form-control"
+                                            readonly style="background-color: #fff; cursor: pointer;" />
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label style="font-weight: 500; font-size: 16px">Empresa</label>
+                                        <input type="text" id="business" name="business" class="form-control" readonly
+                                            style="background-color: #fff; cursor: pointer;" />
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label style="font-weight: 500; font-size: 16px">Direccion</label>
+                                        <textarea id="location" name="location" class="form-control" readonly
+                                            style="background-color: #fff; cursor: pointer;" rows="4"></textarea>
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label style="font-weight: 500; font-size: 16px">Coordenadas</label>
+                                        <input type="text" id="coordinates" name="coordinates" class="form-control"
+                                            readonly style="background-color: #fff; cursor: pointer;" />
+
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label style="font-weight: 500; font-size: 16px">Fecha De Inicio</label>
+                                        <input type="text" id="start_dt" name="start_dt" class="form-control" readonly
+                                            style="background-color: #fff; cursor: pointer;" />
+
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label style="font-weight: 500; font-size: 16px">Fecha De Termino</label>
+                                        <input type="text" id="end_dt" name="end_dt" class="form-control" readonly
+                                            style="background-color: #fff; cursor: pointer;" />
+
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label style="font-weight: 500; font-size: 16px">Monto</label>
+                                        <input type="text" id="amount" name="amount" class="form-control" readonly
+                                            style="background-color: #fff; cursor: pointer;" />
+
+
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label style="font-weight: 500; font-size: 16px">Estado</label>
+                                        <input type="text" id="condition" name="condition" class="form-control" readonly
+                                            style="background-color: #fff; cursor: pointer;" />
+
+
+                                    </div>
+
+                                </div>
+                                <div class="row" id="signature_div">
+                                    <div class="col-md-4" style="margin-top: 0px; ">
+
+                                        <form method="post" class="noprint" id="signature-form">
+
+                                            <div id="signature" style="min-height: 80px;
+                            min-width: 340px;border-bottom: 1px solid #333;"></div>
+                                            <label
+                                                style="font-weight: 500; font-size: 16px; text-align: center; width: 100%; margin-top: 5px;">Ferma
+                                                Digital<span>&nbsp&nbsp&nbsp10/08/2021</span></label>
+
+
+
+
+                                    </div>
+
+
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
+                                <h4 class="text-muted">Archivos De Construcción</h4>
+                                <ul class="list-unstyled" style="padding: 10px;" id="files_links">
+
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer" id="footer">
+                        <button class="btn btn-success" type="submit">Enviar</button>
+
+                    </div>
+
+                    </form>
+                </div>
+
+
+            </section>
+
+        </div>
+
+
+    </div>
+
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
+    <script src="dist/js/functions.js"></script>
+    <script src="../administrator/dist/js/jquery.fine-uploader.js"></script>
+    <script src="../administrator/plugins/select2/js/select2.min.js"></script>
+    <script src="../administrator/dist/js/jSignature.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            var Id = getParameterFromUrl("Id", window.location.href);
+            if (Id != "" && Id != null && Id != undefined) {
+
+                $.ajax({
+                    url: "../controllers/administrator.php",
+                    data: { "action": "get_obra_data", Id: Id },
+                    dataType: "JSON",
+                    type: 'POST',
+                    success: function (response) {
+                        if (response["construction"]) {
+                            var status = response["construction"]["SIGNED_STATUS"];
+                            if (status == 'Y') {
+                                $("#footer").hide();
+                                $("#signature_div").hide();
+                            }
+                            $("#obra_name").text(response["construction"]["OBRA"]);
+                            $("#obra_name").text(response["construction"]["OBRA"]);
+                            $("#construction").val(response["construction"]["OBRA"]);
+                            $("#business").val(response["construction"]["BUSINESS"]);
+                            $("#location").val(response["construction"]["ADDRESS"]);
+                            $("#coordinates").val(response["construction"]["COORDINATES"]);
+                            $("#start_dt").val(response["construction"]["START_DT"]);
+                            $("#end_dt").val(response["construction"]["END_DT"]);
+                            $("#amount").val(response["construction"]["QTY"]);
+                            $("#condition").val(response["construction"]["BUS_CONDITION"]);
+                            
+                            if (response["construction"]["sp_files"]) {
+                                var files = response["construction"]["sp_files"];
+                                if (files.length) {
+                                    $.each(files, function (index, file) {
+                                        $("#files_links").append('<li><a target="_blank" href="view-doc.html?Id=' + file["DOC_ID"] + '" class="btn-link text-info"><i class="fas fa-file" style="font-size: 24px"></i>&nbsp&nbsp ' + file["DOC_NAME"] + '</a></li>');
+
+                                    });
+
+                                }
+                            }
+
+
+                        }
+
+                    },
+
+                });
+
+            }
+            $("#signature").jSignature({
+                'UndoButton': true,
+                'background-color': 'transparent',
+                'decor-color': 'transparent',
+            });
+            var $sigdiv = $("#signature");
+            var datapair = $sigdiv.jSignature("getData", "svgbase64");
+
+            $("#signature").bind("change", function (e) {
+                var data = $("#signature").jSignature("getData");
+                $("#signature_capture").val(data);
+                $("#help").slideDown(300);
+            });
+
+            $("#reset").click(function (e) {
+                $("#signature").jSignature("clear");
+                $("#signature_capture").val("");
+                e.preventDefault();
+            });
+
+
+
+            $("#signature-form").on("submit", function (e) {
+                e.preventDefault();
+                var signature = $("#signature").jSignature("getData");
+                if (signature != "" && Id != "") {
+                    $.ajax({
+                        url: "../controllers/administrator.php",
+                        data: { "action": "sign_obra", Id: Id, signature: signature },
+                        dataType: "JSON",
+                        type: 'POST',
+                        success: function (response) {
+                            if (response["status"] == true) {
+                                alert("Gracias !");
+
+
+
+                            }
+                            if (response["status"] == false) {
+
+                                alert("Ocurrió Un Error. Por Favor, Inténtelo De Nuevo Más Tarde");
+
+                            }
+
+                        },
+
+                    });
+                }
+
+
+
+            });
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

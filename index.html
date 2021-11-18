@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Construapp | Iniciar Sesión En</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+   
+</head>
+
+<body id="loginDiv" style="display: none;">
+    
+    <div class="full granimate">
+        <div class="card login-form">
+            <div class="card-body">
+                <h3 class="card-title text-center"><img src="img/logo.png" style="width: 200px; height: 100px;" /></h3>
+                <h3 class="card-title text-center">Iniciar sesión</h3>
+                <div class="alert alert-danger" role="alert" style="display: none;" id="div_err">
+                    <h4 class="alert-heading">Error !</h4>
+                    <!-- <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p> -->
+                    <!-- <hr> -->
+                    <p class="mb-0" id="error_message">Correo o contraseña incorrectos</p>
+                  </div>
+                <div class="card-text">
+
+                    <form id="login_form" action="#" method="POST">
+
+                        <div class="form-group">
+                            <label for="inp" class="inp">
+                                <input type="text" id="email_Input" placeholder="&nbsp;" name="email_Input">
+                                <span class="label">Email</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                            <small id="email_error"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="inp" class="inp">
+                                <input type="password" id="password_Input" placeholder="&nbsp;" name="password_Input">
+                                <span class="label">
+                                    Contraseña</span>
+                                <span class="focus-bg"></span>
+                            </label>
+                            <small id="password_error"></small>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-bottom: 30px; padding: 14px 0px; font-size: 18px; margin-top: 40px;">Iniciar Sesión</button>
+                        
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    <div>
+        
+
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/additional-methods.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+
+</html>

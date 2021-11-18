@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Constru App | Administrator De Obra</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../administrator/dist/css/fine-uploader-new.css">
+  <link rel="stylesheet" href="../administrator/plugins/select2/css/select2.min.css">
+
+
+  <style>
+    #example1 th {
+      font-weight: 500;
+    }
+
+    .dropdown>.dropdown-menu {
+      top: 200%;
+      transition: 0.3s all ease-in-out;
+    }
+
+    .dropdown:hover>.dropdown-menu {
+      display: block;
+      top: 100%;
+    }
+
+    .dropdown>.dropdown-toggle:active {
+      /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+    }
+
+    #trigger-upload {
+      color: white;
+      background-color: #00ABC7;
+      font-size: 14px;
+      padding: 7px 20px;
+      background-image: none;
+    }
+
+    #fine-uploader-manual-trigger .qq-upload-button {
+      margin-right: 15px;
+    }
+
+    #fine-uploader-manual-trigger .buttons {
+      width: 36%;
+    }
+
+    #fine-uploader-manual-trigger .qq-uploader .qq-total-progress-bar-container {
+      width: 60%;
+    }
+  </style>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+
+
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img class="animation__shake" src="../img/AdminLTELogo.png" height="60" width="60">
+    </div>
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Nueva Obra</a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" id="user" data-toggle="dropdown" href="#"></a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="../controllers/logout.php" class="dropdown-item">Logout</a>
+
+
+          </div>
+        </li>
+
+      </ul>
+    </nav>
+
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+      <a href="#" class="brand-link">
+        <p class="brand-text font-weight-light" style="text-align: center; font-size: 30px; letter-spacing: 1px">CONSTRU
+          <strong>APP</strong>
+        </p>
+      </a>
+
+
+      <div class="sidebar">
+
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+
+            <i class="fas fa-search fa-user" style="font-size: 24px; color: #fff; margin-top: 12px"></i>
+          </div>
+          <div class="info">
+            <a href="#" class="d-block" id="sidebar_username"></a>
+            <a class="d-block" id="sidebar_user_role"
+              style="font-size: 14px; color: #fff; font-weight: 500; letter-spacing: 1px;"></a>
+          </div>
+        </div>
+
+
+
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+            <li class="nav-header" style="letter-spacing: 1px;">ADMINISTRATOR DE OBRA</li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-city"></i>
+                <p>
+                  Obra
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="constructions.html" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Lista de Obra</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="index.html" class="nav-link">
+                    <i class="far fa-circle text-info nav-icon"></i>
+                    <p>Nueva Obra</p>
+                  </a>
+                </li>
+
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Documentos
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="documents.html" class="nav-link">
+                    <i class="fas fa-folder-open nav-icon"></i>
+                    <p>Ver documentos</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="special-document.html" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Nueva Documento</p>
+                  </a>
+                </li>
+
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-feather-alt"></i>
+                <p>
+                  Multas Y Amonestaciones
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="construction-fines.html" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Multas Obra</p>
+                  </a>
+                </li>
+
+
+                <li class="nav-item">
+                  <a href="fine_construction.html" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Nueva Multa Obra</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="workers-fines.html" class="nav-link">
+                    <i class="fas fa-list nav-icon"></i>
+                    <p>Amonestaciones Trabajadores</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="fine-worker.html" class="nav-link">
+                    <i class="far fa-circle nav-icon text-info"></i>
+                    <p>Nueva Amonestacion De Trabajador</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+
+            <li class="nav-item">
+              <a href="workers.html" class="nav-link">
+                <i class="fas fa-user-friends nav-icon"></i>
+                <p>Trabajadores
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="new-worker.html" class="nav-link">
+                <i class="fas fa-user-plus nav-icon"></i>
+                <p>Agregar Trabajador/a
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="requests.html" class="nav-link">
+                <i class="fas fa-list nav-icon"></i>
+                <p>Ver Solicitudes</p>
+              </a>
+
+            </li>
+            <li class="nav-item">
+              <a href="comments.html" class="nav-link">
+                <i class="fas fa-comments nav-icon"></i>
+                <p>Comentarios</p>
+              </a>
+
+            </li>
+
+
+
+
+
+            <li class="nav-item">
+              <a href="../controllers/logout.php" class="nav-link">
+                <i class="nav-icon far fa-circle text-warning"></i>
+                <p>Logout</p>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+
+      </div>
+
+    </aside>
+
+    <div class="content-wrapper" style="overflow: hidden">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Documentos Obra Arquiconcepto</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Documentos Obra </li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+
+              <div class="card card-default">
+                <div class="card-header">
+                  <h3 class="card-title" id="obra_name"></h3>
+
+                </div>
+
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <select class="form-control form-control-sm" id="obra" name="obra">
+                        <option value="">Por Favor Seleccione Obra</option>
+                      </select>
+
+                    </div>
+                    <div class="col-md-6">
+                      <input type="text" readonly class="form-control form-control-sm" id="business" name="business" />
+
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12" id="obra_docs" style="margin-top: 20px;">
+
+
+                    </div>
+
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label style="font-weight: 500; font-size: 14px;">Enlace Para Compartir</label>
+                      <input class="form-control" type="text" readonly style="cursor: pointer;" id="link">
+
+
+                    </div>
+
+                  </div>
+                  <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-12">
+                      <div id="fine-uploader-manual-trigger"></div>
+
+                    </div>
+
+
+                  </div>
+
+
+                </div>
+                <div class="card-footer">
+                  <button type="button" id="uploadBtn" class="btn btn-primary" style="float: right;">Subir
+                    Archivos</button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+    <footer class="main-footer">
+      <p style="text-align: center">Copyright &copy; 2021 <a href="#">ConstruApp</a>. All rights reserved.</p>
+
+
+    </footer>
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+  </div>
+
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="plugins/jszip/jszip.min.js"></script>
+  <script src="plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <script src="dist/js/adminlte.min.js"></script>
+  <script src="dist/js/demo.js"></script>
+  <script src="dist/js/functions.js"></script>
+  <script src="../administrator/dist/js/jquery.fine-uploader.js"></script>
+  <script src="../administrator/plugins/select2/js/select2.min.js"></script>
+
+
+  <script type="text/template" id="qq-template-manual-trigger">
+    <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Suelta Los Archivos Aquí">
+        <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+            <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+        </div>
+        <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+            <span class="qq-upload-drop-area-text-selector"></span>
+        </div>
+        <div class="buttons">
+            <div class="qq-upload-button-selector qq-upload-button">
+                <div>Select files</div>
+            </div>
+            
+        </div>
+        <span class="qq-drop-processing-selector qq-drop-processing">
+            <span>Processing dropped files...</span>
+            <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
+        </span>
+        <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
+            <li>
+                <div class="qq-progress-bar-container-selector">
+                    <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                </div>
+                <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
+                <span class="qq-upload-file-selector qq-upload-file"  id="editname"></span>
+                <span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"><i class="fas fa-pencil-alt"></i></span>
+                <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+                <span class="qq-upload-size-selector qq-upload-size"></span>
+                <button type="button" class="qq-btn qq-upload-cancel-selector qq-upload-cancel">Cancel</button>
+                <button type="button" class="qq-btn qq-upload-retry-selector qq-upload-retry">Retry</button>
+                <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Delete</button>
+                <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+            </li>
+        </ul>
+
+        <dialog class="qq-alert-dialog-selector">
+            <div class="qq-dialog-message-selector"></div>
+            <div class="qq-dialog-buttons">
+                <button type="button" class="qq-cancel-button-selector">Close</button>
+            </div>
+        </dialog>
+
+        <dialog class="qq-confirm-dialog-selector">
+            <div class="qq-dialog-message-selector"></div>
+            <div class="qq-dialog-buttons">
+                <button type="button" class="qq-cancel-button-selector">No</button>
+                <button type="button" class="qq-ok-button-selector">Yes</button>
+            </div>
+        </dialog>
+
+        <dialog class="qq-prompt-dialog-selector">
+            <div class="qq-dialog-message-selector"></div>
+            <input type="text">
+            <div class="qq-dialog-buttons">
+                <button type="button" class="qq-cancel-button-selector">Cancel</button>
+                <button type="button" class="qq-ok-button-selector">Ok</button>
+            </div>
+        </dialog>
+    </div>
+</script>
+
+
+  <script>
+    $(document).ready(function () {
+      $("#obra").select2();
+      var res = getConstructions();
+      if (res["login"] == false) {
+        window.location.href = "../index.html";
+      }
+      if (res["login"] == true && res["lov_const"]) {
+        jQuery.each(res["lov_const"], function (index, value) {
+
+          $("#obra").append("<option value=" + value['CONS_ID'] + " style='text-transform: initial'>" + value['NAME'] + "</option>");
+
+        });
+
+
+      }
+      $("#obra").on("change", function () {
+        var const_ID = $("#obra").val();
+        if (const_ID) {
+          $.ajax({
+            type: "POST",
+            url: "../controllers/administrator.php",
+            dataType: "JSON",
+            data: { action: "get_construction_data", const_ID: const_ID },
+            success: function (response) {
+              if (response["login"] == false) {
+                window.location.href = "../index.html";
+              }
+              if (response["login"] == true) {
+                if (response["construction"]) {
+                  $("#business").val(response["construction"][2]);
+                  $("#business").text(response["construction"][2]);
+                  $("#link").val("http://localhost/construapp/requests/view-documents.html?Id=" + const_ID);
+                }
+
+              }
+
+            }
+
+          });
+        }
+
+
+      });
+      var construction_ID = getParameterFromUrl("const_id", window.location.href);
+      if (construction_ID != "" && construction_ID != null && construction_ID != undefined) {
+        $("#obra").val(construction_ID).trigger("change");
+        $.ajax({
+          url: "../controllers/administrator.php",
+          data: { "action": "get_obra_docs", construction_ID: construction_ID },
+          dataType: "JSON",
+          type: 'POST',
+          success: function (response) {
+
+            if (response["login"] == true) {
+              if (response["files"]) {
+                $.each(response["files"], function (index, element) {
+                  console.log("ingreso el archivo");
+                  $("#obra_docs").append("<div class='btn-group'><button type='button' style='width: 100%;' class='btn btn-link'><i class='far fa-file'></i>&nbsp&nbsp " + element["FILE_NAME"] + " </button> <button type='button' class='btn btn-link dropdown-toggle dropdown-icon' data-toggle='dropdown'> <span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu' role='menu'><a  class='dropdown-item openBtn' id=" + element["ID"] + "  href='../requests/uploads/obra_uploads/" + element["OBRA_ID"] + "/" + element["FILE_NAME"] + "'  target='_blank'>Descargar</a><a class='dropdown-item deleteBtn' href='#' id=" + element["ID"] + ">Eliminar</a></div></div>");
+                  console.log("metio el archivo");
+                });
+
+
+                $(".deleteBtn").on("click", function () {
+                  var document_ID = $(this).attr("id");
+                  if (confirm('Estás seguro de que deseas eliminar este documento ?')) {
+
+                    if (document_ID != "" && construction_ID != "") {
+                      $.ajax({
+                        url: "../controllers/administrator.php",
+                        data: { "action": "delete_document", construction_ID: construction_ID, document_ID: document_ID },
+                        dataType: "JSON",
+                        type: 'POST',
+                        success: function (response) {
+                          if (response["login"] == false) {
+                            window.location.href = "../index.html";
+
+                          }
+                          if (response["login"] == true) {
+                            if (response["status"] == true) {
+                              window.location.reload();
+                            }
+                            if (response["status"] == false) {
+                              alert("Ocurrió Un Error. Por Favor, Inténtelo De Nuevo Más Tarde");
+
+                            }
+
+                          }
+                        },
+
+                      });
+                    }
+                  }
+
+                });
+
+
+
+              }
+              if (response["status"] == false) {
+                alert("Ocurrió Un Error. Por Favor, Inténtelo De Nuevo Más Tarde");
+              }
+              if (response["sp_files"]) {
+                $.each(response["sp_files"], function (index, element) {
+                  $("#obra_docs").append("<div class='btn-group'><button type='button' style='width: 100%;' class='btn btn-link'><i class='far fa-file'></i>&nbsp&nbsp " + element["DOC_NAME"] + " </button> <button type='button' class='btn btn-link dropdown-toggle dropdown-icon' data-toggle='dropdown'> <span class='sr-only'>Toggle Dropdown</span></button><div class='dropdown-menu' role='menu'><a  class='dropdown-item' id=" + element["DOC_ID"] + "  href='view-doc.html?Id=" + element["DOC_ID"] + "'  target='_blank'>Descargar</a><a class='dropdown-item delete_SPDOC' href='#' id=" + element["DOC_ID"] + ">Eliminar</a></div></div>");
+                });
+              }
+              $(".delete_SPDOC").on("click", function () {
+                var document_ID = $(this).attr("id");
+                if (confirm('Estás seguro de que deseas eliminar este documento ?')) {
+
+                  if (document_ID != "") {
+                    $.ajax({
+                      url: "../controllers/administrator.php",
+                      data: { "action": "delete_sp_Doc",document_ID: document_ID },
+                      dataType: "JSON",
+                      type: 'POST',
+                      success: function (response) {
+                        if (response["login"] == false) {
+                          window.location.href = "../index.html";
+
+                        }
+                        if (response["login"] == true) {
+                          if (response["status"] == true) {
+                            alert("Eliminada ! ");
+                            window.location.reload();
+                          }
+                          if (response["status"] == false) {
+                            alert("Ocurrió Un Error. Por Favor, Inténtelo De Nuevo Más Tarde");
+
+                          }
+
+                        }
+                      },
+
+                    });
+                  }
+                }
+
+
+              });
+
+            }
+          },
+
+        });
+
+      }
+
+
+
+      var res = getUser();
+      if (res["login"] == false) {
+        window.location.href = "../index.html";
+      }
+      if (res["user"]) {
+
+        $("#user").text(res["user"]["NAME"]);
+        $("#user_role").text(res["user"]["DESIGNATION"]);
+        $("#userside").text(res["user"]["NAME"]);
+
+      }
+      $('#fine-uploader-manual-trigger').fineUploader({
+        template: 'qq-template-manual-trigger',
+
+
+        autoUpload: false,
+        validation: {
+          allowedExtensions: ['pdf', 'docx', 'doc', 'txt']
+        },
+        multiple: false
+      });
+
+
+      $("#uploadBtn").on("click", function (e) {
+        e.preventDefault();
+        var files = $('#fine-uploader-manual-trigger').fineUploader('getUploads');
+        var formData = new FormData();
+        formData.append("action", "obra_docs");
+        formData.append("construction_ID", construction_ID);
+        formData.append("filename", $("#editname").text());
+        $.each(files, function (index, item) {
+          formData.append("documents", item["file"]);
+
+        });
+        if (files.length <= 0) {
+          alert("Cargue El Archivo");
+        }
+        else {
+          $.ajax({
+            url: "../controllers/administrator.php",
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "JSON",
+            type: 'POST',
+            success: function (response) {
+              if (response["login"] == false) {
+                window.location.href = "../index.html";
+
+              }
+              if (response["login"] == true) {
+                if (response["status"] == true) {
+                  window.location.reload();
+                }
+                if (response["status"] == false) {
+                  if (response["error_msg"]) {
+                    alert(response["error_msg"]);
+                  }
+                  else {
+                    alert("Ocurrió Un Error. Por Favor, Inténtelo De Nuevo Más Tarde");
+                  }
+
+                }
+
+              }
+            },
+
+          });
+        }
+
+
+      });
+
+
+
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

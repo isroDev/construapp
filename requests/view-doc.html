@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Constru App | Administrator De Obra</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="dist/css/fine-uploader-new.css">
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <style>
+        body{
+            overflow: hidden;
+        }
+        #signature_capture {
+            width: 100%;
+            height: 7em;
+        }
+    </style>
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <div class="content-wrapper" style="margin-left: 0px">
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 id="doc_title"></h1>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="content">
+
+
+                <div class="card">
+                    <!-- <div class="card-header">
+                        <h3 class="card-title" id="obra_name">Lorem Ipsum</h3>
+
+
+                    </div> -->
+                    
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label style="font-weight: 500; font-size: 16px">Título</label>
+                                <input type="text" id="title" name="title" class="form-control"
+                                    readonly style="background-color: #fff; cursor: pointer;" />
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label style="font-weight: 500; font-size: 16px">Fecha</label>
+                                <input type="text" id="dt" name="dt" class="form-control"
+                                    readonly style="background-color: #fff; cursor: pointer;" />
+
+                            </div>
+                            
+                            <div class="col-md-2">
+                                <label style="font-weight: 500; font-size: 16px">Obra</label>
+                                <input type="text" id="construction" name="construction" class="form-control"
+                                    readonly style="background-color: #fff; cursor: pointer;" />
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 style="margin-top: 20px;">Texto</h3>
+                                <p id="descrip" style="text-align: justify; line-height: 28px; border: 1px solid #ccc; padding: 20px 20px; letter-spacing: 1px; overflow-y: scroll; height: 250px;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+                                    </p>
+
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                    <!-- <div class="card-footer" id="footer">
+                        <button class="btn btn-success" type="submit">Enviar</button>
+
+                    </div> -->
+
+                </form>
+                </div>
+
+
+            </section>
+
+        </div>
+
+
+    </div>
+
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
+    <script src="dist/js/functions.js"></script>
+    <script src="dist/js/jquery.fine-uploader.js"></script>
+    <script src="plugins/select2/js/select2.min.js"></script>
+    <script src="dist/js/jSignature.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            var Id = getParameterFromUrl("Id", window.location.href);
+            
+            if (Id != "" && Id != null && Id != undefined) {
+
+                $.ajax({
+                    url: "../controllers/administrator.php",
+                    data: { "action": "get_sp_doc", Id: Id },
+                    dataType: "JSON",
+                    type: 'POST',
+                    success: function (response) {
+                        if (response["document"] != "") 
+                        {
+                            $("#title").val(response["document"]["TITLE"]);
+                            $("#dt").val(response["document"]["ENT_DT"] +  "  "+ response["document"]["ENT_TIME"]);
+                            $("#construction").val(response["document"]["CONST_NAME"]);
+                            $("#descrip").text(response["document"]["DESCRIP"]);
+                            
+
+
+
+                            
+
+
+                        }
+
+                    },
+
+                });
+
+            }
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

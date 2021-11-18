@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Constru App | Entrega De Material</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="../administrator/plugins/select2/css/select2.min.css">
+  <style>
+    #example1 th {
+      font-weight: 500;
+      text-align: center;
+    }
+
+    small {
+      color: red;
+    }
+
+    .select2-selection__rendered {
+    line-height: 31px !important;
+    border-color: #ccc;
+}
+.select2-container .select2-selection--single {
+    height: 35px !important;
+    border: 1px solid #ccc;
+}
+.select2-selection__arrow {
+    height: 34px !important;
+}
+  </style>
+
+</head>
+
+<body id="new_requestDIV" class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
+
+
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img class="animation__shake" src="../img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    </div>
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">SOLICITUDES</a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav ml-auto">
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" id="user" data-toggle="dropdown" href="#"></a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="../controllers/logout.php" class="dropdown-item">Logout</a>
+
+
+          </div>
+        </li>
+
+      </ul>
+    </nav>
+
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+      <a href="#" class="brand-link">
+        <p class="brand-text font-weight-light" style="text-align: center; font-size: 30px; letter-spacing: 1px">CONSTRU
+          <strong>APP</strong>
+        </p>
+      </a>
+
+
+      <div class="sidebar">
+
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+
+            <i class="fas fa-search fa-user" style="font-size: 24px; color: #fff; margin-top: 12px"></i>
+          </div>
+          <div class="info">
+            <a href="#" class="d-block" id="sidebar_username"></a>
+            <a class="d-block" id="sidebar_user_role" style="font-size: 14px; color: #fff; font-weight: 500; letter-spacing: 1px;"></a>
+          </div>
+        </div>
+
+
+
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+            <li class="nav-header">BODEGUERO</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-shopping-cart"></i>
+                <p>
+                    Entregas
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                      <a href="material-delivery.html" class="nav-link">
+                        <i class="fas fa-circle nav-icon"></i>
+                        <p>Nueva Entrega</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="material-deliveries.html" class="nav-link">
+                        <i class="fas fa-circle nav-icon"></i>
+                        <p>Ver Entregas</p>
+                      </a>
+                  </li>
+                
+              </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-window-restore"></i>
+                  <p>
+                      Recepciones
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="material-return.html" class="nav-link">
+                          <i class="fas fa-circle nav-icon"></i>
+                          <p>Nuevo Recibo</p>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <i class="fas fa-circle nav-icon"></i>
+                          <p>Ver Recibos</p>
+                        </a>
+                    </li> -->
+                  
+                </ul>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-truck"></i>
+                    <p>
+                        Proveedor
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                          <a href="materials-receive-supplier.html" class="nav-link">
+                            <i class="fas fa-circle nav-icon"></i>
+                            <p>Recepción De material</p>
+                          </a>
+                      </li>
+                      
+                      <li class="nav-item">
+                          <a href="supplier-refund.html" class="nav-link">
+                            <i class="fas fa-circle nav-icon"></i>
+                            <p>Devolución Material</p>
+                          </a>
+                      </li>
+                    
+                  </ul>
+                </li>
+                
+           
+            <li class="nav-item">
+                <a href="warehouse-supply.html" class="nav-link">
+                  <i class="fas fa-house-user nav-icon"></i>
+                  <p>Abastecimiento Bodega
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                  <p>
+                      Solicitudes
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="new-request.html" class="nav-link">
+                          <i class="fas fa-circle nav-icon"></i>
+                          <p>Nueva Solicitud</p>
+                        </a>
+                    </li>
+                    
+
+                    <li class="nav-item">
+                        <a href="requests.html" class="nav-link">
+                          <i class="fas fa-circle nav-icon"></i>
+                          <p>Ver Solicitudes</p>
+                        </a>
+                    </li>
+                    
+                  
+                </ul>
+              </li>
+              <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-store-alt"></i>
+                    <p>
+                        Inventario
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                          <a href="inventory-stock.html" class="nav-link">
+                            <i class="fas fa-circle nav-icon"></i>
+                            <p>
+                                Materiales De Inventario</p>
+                          </a>
+                      </li>
+                      
+  
+                      <li class="nav-item">
+                          <a href="materials-inventory.html" class="nav-link">
+                            <i class="fas fa-circle nav-icon"></i>
+                            <p>Ver Registros</p>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="material_receipt.html" class="nav-link">
+                            <i class="fas fa-circle nav-icon"></i>
+                            <p>Nuevo Registro</p>
+                          </a>
+                      </li>
+                    
+                      
+                    
+                  </ul>
+                </li>
+           
+            
+
+
+            <li class="nav-item">
+              <a href="../controllers/logout.php" class="nav-link">
+                <i class="nav-icon far fa-circle text-warning"></i>
+                <p>Logout</p>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+
+      </div>
+
+    </aside>
+
+    <div class="content-wrapper">
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+
+            <div class="col-md-12" style="margin-top: 20px;">
+
+              <div class="card card-light">
+                <div class="card-header">
+                  <h3 class="card-title"></h3>Entrega De Material</h3>
+                </div>
+                <form id="deliveryForm" href="#" method="POST">
+                  <div class="card-body">
+
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label style="font-weight: 500; font-size: 16px;">Rut</label>
+                          <select class="form-control form-control-sm" id="rut_List" name="rut_List">
+                            <option value="">Por Favor Seleccione</option>
+                          </select>
+                        </div>
+
+                      </div>
+
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label style="font-weight: 500; font-size: 16px;">Id De Solicitud</label>
+                          <select class="form-control form-control-sm" id="request_list" name="request_list">
+                            <option value="">Por Favor, Elija ID De Solicitud</option>
+                          </select>
+                        </div>
+
+                      </div>
+                      <div class="col-md-2">
+                        <button class="btn-sm btn-primary" style="margin-top: 33px; width: 100%; " id="fetchBtn">Obtener
+                          Datos</button>
+
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label style="font-weight: 500; font-size: 16px;">Solicitar Importancia</label>
+                          <input class="form-control form-control-sm" readonly id="importence" name="importence" />
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" style="font-weight: 500; font-size: 16px;">Solicitante</label>
+                          <input readonly class="form-control form-control-sm" id="applicant" name="applicant" />
+                          <small></small>
+                        </div>
+
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" style="font-weight: 500; font-size: 16px;">Cargo</label>
+                          <input class="form-control form-control-sm" id="designation" name="designation" readonly />
+                          <small></small>
+                        </div>
+
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" style="font-weight: 500; font-size: 16px;">Visador</label>
+                          <input type="text" class="form-control form-control-sm" readonly id="request_to_name"  name="request_to_name" />
+                          <small></small>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label style="font-weight: 500; font-size: 16px;">Materiales</label>
+                          <select id="materials" class="form-control form-control-sm" name="materials">
+                            <option value="">Por Favor Seleccione</option>
+
+
+
+                          </select>
+                          <small></small>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+
+                    <div class="row">
+
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" style="font-weight: 500; font-size: 16px;">Nombre
+                            Insumo</label>
+                          <input type="text" readonly class="form-control form-control-sm" id="material_name"
+                            name="material_name">
+                          <small></small>
+                        </div>
+
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" style="font-weight: 500; font-size: 16px;">Stock</label>
+                          <input type="text" readonly class="form-control form-control-sm" id="material_stock"
+                            name="material_stock" value="0" style="text-align: right;">
+                          <small></small>
+                        </div>
+
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" style="font-weight: 500; font-size: 16px;">Cantidad a
+                            Solicitar</label>
+                          <input type="number" class="form-control form-control-sm" id="requested_amount"
+                            name="requested_amount" value="0" min="0" style="text-align: right;">
+                          <small></small>
+                        </div>
+
+                      </div>
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" style="font-weight: 500; font-size: 16px;">Tipo</label>
+                          <input readonly class="form-control form-control-sm" id="unit" name="unit" />
+                          <input readonly style="display: none;" class="form-control form-control-sm" id="materiaID"
+                            name="materiaID" />
+                          <small></small>
+                        </div>
+
+                      </div>
+
+                      <div class="col">
+                        <button class="btn-sm btn-primary" style="margin-top: 30px; width: 100%;"
+                          id="addBtn">Agregar</button>
+
+
+                      </div>
+
+                    </div>
+
+                    <div class="row" style="display: none;" id="tableDiv">
+                      <div class="col-12">
+                        <table id="example1" class="table table-bordered table-striped">
+                          <thead style="background-color: #343a40; color: #fff;">
+                            <tr>
+                              <th>Material Id</th>
+                              <th>Material</th>
+                              <th>Cantidad De Emisión</th>
+                              <th>Tipo</th>
+                              <th>Acción</th>
+                            </tr>
+                          </thead>
+                          <tbody id="table">
+
+                          </tbody>
+
+
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+
+                  <div class="card-footer">
+                    <button id="submitBtn" type="submit" style="float: right;" class="btn btn-success">Enviar</button>
+                  </div>
+                </form>
+                <div class="modal fade modal-center" id="myModal" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Verificador De Perfil</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" style="font-weight: 500; font-size: 16px;">Ingrese Su
+                            Clave</label>
+                          <input type="password" class="form-control" id="password_Input" name="password_Input"
+                            required />
+
+
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="check_BTn" class="btn btn-success">Validar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+
+
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="main-footer">
+      <p style="text-align: center">Copyright &copy; 2021 <a href="#">ConstruApp</a>. All rights reserved.</p>
+
+
+    </footer>
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+  </div>
+
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="plugins/chart.js/Chart.min.js"></script>
+  <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+  <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+  <script src="plugins/moment/moment.min.js"></script>
+  <script src="plugins/daterangepicker/daterangepicker.js"></script>
+  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="dist/js/adminlte.js"></script>
+  <script src="dist/js/demo.js"></script>
+  <script src="dist/js/jquery.validate.min.js"></script>
+  <script src="dist/js/additional-methods.min.js"></script>
+  <script src="dist/js/functions.js"></script>
+  <script src="../administrator/plugins/select2/js/select2.min.js"></script>
+
+
+  <script>
+    $(document).ready(function () {
+      $("#rut_List").select2();
+      $("#materials").select2();
+      $("#request_list").select2();
+      
+      var response = get_Rut_Requesters();
+      if (response["login"] == true && response["lov"]) {
+        jQuery.each(response["lov"], function (index, value) {
+          $("#rut_List").append("<option value=" + value['ID'] + ">" + value['RUT'] + "</option>");
+
+
+        });
+
+
+      }
+
+      $("#rut_List").on("change", function () {
+        var requester_ID = $("#rut_List").val();
+        if (requester_ID != "") {
+          var response = get_requests_of_user(requester_ID);
+          if (response["login"] == true && response["lov"]) {
+            $("#request_list").find('option').not(':first').remove();
+            jQuery.each(response["lov"], function (index, value) {
+              $("#request_list").append("<option value=" + value['ID'] + ">" + value['ID'] + "</option>");
+            });
+
+
+          }
+
+        }
+
+      });
+      $("#fetchBtn").on("click", function (e) {
+        e.preventDefault();
+        var request_ID = $("#request_list").val();
+        $.ajax({
+          type: "POST",
+          url: "../controllers/controller.php",
+          dataType: "JSON",
+          data: { action: "get_request_data", request_ID: request_ID },
+          success: function (response) {
+            var request = response["request"];
+            $("#importence").val(request["REQ_IMP"]);
+            $("#applicant").val(request["NAME"]);
+            $("#designation").val(request["DESIGNATION"]);
+            $("#request_to_name").val(request["REQ_TO_NAME"]);
+            jQuery.each(request["materials"], function (index, value) {
+              $("#materials").append("<option value=" + value['ID'] + ">" + value['NAM'] + "</option>");
+            });
+
+
+
+
+          },
+        });
+
+
+
+      });
+
+      $("#materials").on("change", function () {
+        var material_ID = $("#materials").val();
+        var request_ID = $("#request_list").val();
+        $.ajax({
+          type: "POST",
+          url: "../controllers/controller.php",
+          dataType: "JSON",
+          data: { action: "get_material_values", material_ID: material_ID, request_ID: request_ID },
+          success: function (response) {
+            var mat = response["material"];
+            $("#material_name").val(mat["NAME"]);
+            $("#requested_amount").val(mat["REQ_AMOUNT"]);
+            $("#unit").val(mat["UNIT"]);
+            $("#material_stock").val(mat["STK"]);
+            $("#materiaID").val(mat["ID"]);
+
+
+
+
+
+          },
+        });
+
+      });
+      var table = $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+
+      });
+      $('#example1').on("click", "button", function () {
+        var row = table.row($(this).parents('tr')).data();
+        var id = row[0];
+        var material = row[1];
+        $("#materials").append("<option value=" + id + ">" + material + "</option>")
+        table.row($(this).parents('tr')).remove().draw(false);
+
+      });
+      $("#addBtn").on("click", function (e) {
+        e.preventDefault();
+        var issue_amt = parseInt($("#requested_amount").val());
+        var material_desc = $("#material_name").val();
+        var material_ID = $("#materiaID").val();
+        var unit = $("#unit").val();
+        var stk = parseInt($("#material_stock").val());
+        if (issue_amt > stk) {
+          alert("No Puede Emitir Más Que Stock");
+        }
+        if (material_desc != "" && issue_amt != 0 && unit != "" && material_ID != "" && issue_amt <= stk) {
+          table.row.add([material_ID, material_desc, issue_amt, unit, "<button type='button' style='width: 100%' class='btn btn-danger'><i class='far fa-trash-alt'></i>&nbsp&nbsp&nbsp&nbspBorrar</button>"]).draw(false);
+          $("#requested_amount").val(0);
+          $("#material_stock").val(0);
+          $("#material_name").val("");
+          $("#materiaID").val("");
+          $("#unit").val("");
+          $("#materials option[value=" + material_ID + "]").remove();
+          $("#materials").select2();
+          $("#tableDiv").show();
+
+
+
+
+        }
+        else {
+          alert("Seleccione el tipo de Material");
+        }
+
+      });
+
+
+
+      $("#deliveryForm").on("submit", function (e) {
+        e.preventDefault();
+        // $("#submitBtn").css("display", "none");
+
+        var materials = Array();
+        var data = table.rows().data().toArray();
+        if (data.length <= 0) {
+          alert("Por Favor Agregue Materiales");
+        }
+        if (data.length > 0) {
+          $('#myModal').modal('show');
+
+        }
+
+
+      });
+
+      $("#check_BTn").on("click", function (e) {
+        e.preventDefault();
+        var userpassword = $("#password_Input").val();
+        var response = CheckPassword(userpassword);
+        if (response["status"] == true && response["login"] == true) {
+          var request_ID = $("#request_list").val();
+          var delivered_to = $("#rut_List").val();
+          var viewer = $("#request_to_name").val();
+          var materials = Array();
+          var data = table.rows().data().toArray();
+          if (data.length <= 0) {
+            alert("Por Favor Agregue Materiales");
+          }
+          if (data.length > 0) {
+            $.ajax
+              ({
+                type: "POST",
+                url: "../controllers/controller.php",
+                dataType: "JSON",
+                data: { action: "material_delivery", request_ID: request_ID, delivered_to: delivered_to,viewer: viewer, materials: data },
+                success: function (response) {
+                  if (response["error"] == true) {
+                    alert("Fallido ! Por favor, inténtelo de nuevo más tarde. ");
+                    
+
+                  }
+                  if (response["error"] == false) {
+                    alert("Entrega De Material Con éxito");
+                    window.location.reload();
+
+                  }
+
+                }
+
+              });
+
+          }
+
+
+
+
+        }
+
+
+
+      });
+
+
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

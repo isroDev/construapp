@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Constru App | Inventario</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="../administrator/plugins/select2/css/select2.min.css">
+
+    <style>
+        #example1 th {
+            font-weight: 500;
+            text-align: center;
+        }
+
+        small {
+            color: red;
+        }
+
+        .select2-selection__rendered {
+            line-height: 31px !important;
+            border-color: #ccc;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 35px !important;
+            border: 1px solid #ccc;
+        }
+
+        .select2-selection__arrow {
+            height: 34px !important;
+        }
+    </style>
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="../img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        </div>
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link" style="letter-spacing: 3px; font-weight: 400;">INVENTARIO</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ml-auto">
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" id="user" data-toggle="dropdown" href="#"></a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="../controllers/logout.php" class="dropdown-item">Logout</a>
+
+
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+            <a href="#" class="brand-link">
+                <p class="brand-text font-weight-light"
+                    style="text-align: center; font-size: 30px; letter-spacing: 1px">CONSTRU
+                    <strong>APP</strong>
+                </p>
+            </a>
+
+
+            <div class="sidebar">
+
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+
+                        <i class="fas fa-search fa-user" style="font-size: 24px; color: #fff; margin-top: 12px"></i>
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block" id="sidebar_username"></a>
+                        <a class="d-block" id="sidebar_user_role"
+                            style="font-size: 14px; color: #fff; font-weight: 500; letter-spacing: 1px;"></a>
+                    </div>
+                </div>
+
+
+
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+
+                        <li class="nav-header">BODEGUERO</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                    Entregas
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="material-delivery.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Nueva Entrega</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="material-deliveries.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Ver Entregas</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-window-restore"></i>
+                                <p>
+                                    Recepciones
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="material-return.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Nuevo Recibo</p>
+                                    </a>
+                                </li>
+                                <!-- <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Ver Recibos</p>
+                              </a>
+                          </li> -->
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-truck"></i>
+                                <p>
+                                    Proveedor
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="materials-receive-supplier.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Recepción De material</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="supplier-refund.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Devolución Material</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a href="warehouse-supply.html" class="nav-link">
+                                <i class="fas fa-house-user nav-icon"></i>
+                                <p>Abastecimiento Bodega
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                                <p>
+                                    Solicitudes
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="new-request.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Nueva Solicitud</p>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a href="requests.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Ver Solicitudes</p>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-store-alt"></i>
+                                <p>
+                                    Inventario
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="inventory-stock.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>
+                                            Materiales De Inventario</p>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a href="materials-inventory.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Ver Registros</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="material_receipt.html" class="nav-link">
+                                        <i class="fas fa-circle nav-icon"></i>
+                                        <p>Nuevo Registro</p>
+                                    </a>
+                                </li>
+
+
+
+                            </ul>
+                        </li>
+
+
+
+
+                        <li class="nav-item">
+                            <a href="../controllers/logout.php" class="nav-link">
+                                <i class="nav-icon far fa-circle text-warning"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+
+            </div>
+
+        </aside>
+
+
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-12" style="margin-top: 20px;">
+
+                            <div class="card card-light">
+                                <div class="card-header">
+                                    <h3 class="card-title"></h3>Recibo De Material</h3>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <form id="upload_csv" action="#" method="POST" enctype="multipart/form-data">
+                                        <div class="row">
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="materials_csv"
+                                                            name="materials_csv">
+                                                        <label class="custom-file-label" for="customFile">Seleccione
+                                                            Archivo CSV</label>
+                                                    </div>
+                                                </div>
+                                                <!-- <input type="file" name="employee_file" style="margin-top:15px;" /> -->
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="submit" style="width: 100%;" class="btn btn-primary"><i
+                                                        class="fas fa-upload"></i>&nbsp&nbsp&nbspSubir</button>
+
+                                            </div>
+
+                                        </div>
+                                        <small class="text-muted" style="color: #333;">Asegúrese de que la rutina y los
+                                            materiales existan en la base de datos antes de agregar csv</small>
+
+                                    </form>
+                                    <form id="receiptForm" href="#" method="POST" enctype="multipart/form-data">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label style="font-weight: 500; font-size: 16px;">Rut Del Proveedor</label>
+                                                    <select class="form-control form-control-sm" id="receipt_from"
+                                                        name="receipt_from" style="width: 100%">
+                                                        <option value="">Recibo De Material Desde</option>
+
+                                                    </select>
+                                                    <small></small>
+
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group" style="margin-top: 32px;">
+                                                    <input type="file" id="image_material" name="image_material"
+                                                        accept="image/jpg,image/png,image/jpeg,image/gif" style="width: 100%;"/>
+
+                                                </div>
+
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1"
+                                                        style="font-weight: 500; font-size: 16px;">Nombre Insumo</label>
+                                                    <select class="form-control form-control-sm" id="materialList"
+                                                        name="materialList">
+                                                        <option value="">Por Favor Seleccione</option>
+                                                    </select>
+                                                    <small></small>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1"
+                                                        style="font-weight: 500; font-size: 16px;">Tipo</label>
+                                                    <input class="form-control form-control-sm" readonly style="height: 35px;" id="unit" name="unit"/>
+                                                    <small></small>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1"
+                                                        style="font-weight: 500; font-size: 16px;">Cantidad</label>
+                                                    <input type="number" class="form-control form-control-sm"
+                                                        id="amount" name="amount"
+                                                        style="text-align: right; height: 35px;" min="0" value="0">
+                                                    <small></small>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button class="btn-sm btn-primary" style="margin-top: 32px; width: 100%;"
+                                                    id="addBtn">Agregar</button>
+
+
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                </div>
+
+
+                                <div class="row" id="tableDiv">
+                                    <div class="col-12">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead style="background-color: #343a40; color: #fff;">
+                                                <tr>
+                                                    <th>Material Id</th>
+                                                    <th>Material</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Tipo</th>
+                                                    <th>Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table">
+
+                                            </tbody>
+
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button id="submitBtn" type="submit" style="float: right; margin: 20px 20px;"
+                                            class="btn btn-success">Submit</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            </form>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+
+        </div>
+        </section>
+
+    </div>
+
+    <footer class="main-footer">
+        <p style="text-align: center">Copyright &copy; 2021 <a href="#">ConstruApp</a>. All rights reserved.</p>
+
+
+    </footer>
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+    </div>
+
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/chart.js/Chart.min.js"></script>
+    <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+    <script src="plugins/moment/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="dist/js/adminlte.js"></script>
+    <script src="dist/js/demo.js"></script>
+    <script src="dist/js/jquery.validate.min.js"></script>
+    <script src="dist/js/additional-methods.min.js"></script>
+    <script src="dist/js/functions.js"></script>
+    <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script src="../administrator/plugins/select2/js/select2.min.js"></script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#materialList").select2();
+            $("#receipt_from").select2();
+            bsCustomFileInput.init();
+            var response = getSuppliers();
+            if (response["login"] == true && response["lov_rut"]) {
+                jQuery.each(response["lov_rut"], function (index, value) {
+                    $("#receipt_from").append("<option value=" + value['ID'] + " style='text-transform: initial'>" + value['RUT'] + "</option>");
+
+
+                });
+
+
+            }
+            var response = get_Materials();
+            if (response["login"] == true && response["lov_materials"]) {
+                jQuery.each(response["lov_materials"], function (index, value) {
+                    $("#materialList").append("<option value=" + value['ID'] + " style='text-transform: initial'>" + value['NAME'] + "</option>");
+                    
+
+                });
+
+
+            }
+            $("#materialList").on("change", function(){
+                var itmcode         =       $(this).val();
+                if(itmcode != "")
+                {
+                    $.ajax({
+                            type: "POST",
+                            url: "../controllers/controller.php",
+                            dataType: "JSON",
+                            data: {action: "get_material_unit", itmcode : itmcode},
+                            success: function (response) {
+                                if (response["status"] == true) {
+                                    $("#unit").val(response["MATERIAL"]["UNIT"]);
+
+                                }
+                                
+
+                            }
+
+                    });
+
+                }
+
+            });
+
+            var table = $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "bInfo": false,
+                "bPaginate": false,
+
+
+
+            });
+            $('#example1').on("click", "button", function () {
+                var row = table.row($(this).parents('tr')).data();
+                var id = row[0];
+                var material = row[1];
+                $("#materials").append("<option value=" + id + ">" + material + "</option>")
+                table.row($(this).parents('tr')).remove().draw(false);
+
+            });
+            $("#addBtn").on("click", function (e) {
+                e.preventDefault();
+                var materials = $("#materialList").val();
+                var amount = $("#amount").val();
+                var unit = $("#unit").val();
+                if (materials != "" && amount != 0 && unit != "") {
+                    table.row.add([$("#materialList").val(), $("#materialList option:selected").text(), amount, unit, "<button type='button' style='width: 100%' class='btn btn-outline-danger'><i class='far fa-trash-alt'></i></button>"]).draw(false);
+                    $('#materialList option:selected').remove();
+                    $("#amount").val(0);
+                    $("#tableDiv").show();
+
+                }
+                else {
+                    alert("Seleccione el tipo de Material");
+                }
+
+
+
+
+
+            });
+
+
+            $('#receiptForm').validate({
+                rules:
+                {
+                    receipt_from:
+                    {
+                        required: true,
+
+                    },
+
+                },
+                messages: {
+                    receipt_from: {
+                        required: "Este Campo Es Obligatorio",
+
+                    },
+
+                },
+                errorPlacement: function (error, element) {
+
+                    $(element).next("small").text($(error).text());
+                },
+                success: function (element) {
+                    $(element).next("small").text("");
+                },
+
+            });
+            $("#receiptForm").on("submit", function (e) {
+                e.preventDefault();
+                if ($("#receiptForm").valid() == true) {
+                    var materials = Array();
+                    var data = table.rows().data().toArray();
+                    if (data.length < 0) {
+                        alert("Por Favor Agregue Materiales");
+                    }
+                    if (data.length >= 0) {
+                        var formData = new FormData(this);
+                        formData.append("action", "material_receive_inv");
+                        formData.append("materials", JSON.stringify(data));
+                        $.ajax({
+                            type: "POST",
+                            url: "../controllers/controller.php",
+                            cache: false,
+                            dataType: "JSON",
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (response) {
+                                if (response["receipt_status"] != false) {
+                                    alert("Recepción De Material Con éxito");
+                                    window.location.reload();
+
+                                }
+                                if (response["receipt_status"] == false) {
+                                    alert("Ha Ocurrido Un Error. Por Favor Intente De Nuevo");
+                                    window.location.reload();
+
+
+                                }
+
+                            }
+
+                        });
+                    }
+
+
+
+
+                }
+
+
+            });
+            $("#upload_csv").on("submit", function (event) {
+                event.preventDefault();
+                var form = $('#upload_csv')[0];
+                var data = new FormData(form);
+                data.append("action", "import-materials");
+                $.ajax({
+                    url: "../controllers/controller.php",
+                    method: "POST",
+                    data: data,
+                    contentType: false,
+                    cache: false,
+                    // dataType: "JSON",           
+                    processData: false,
+                    success: function (response) {
+                        var data = JSON.parse(response);
+                        if (data["login"] == false) {
+                            window.location.href = "../index.html";
+                        }
+                        if (data["login"] == true) {
+                            if (data["error_entries"] && data["error_entries"].length == 0) {
+                                alert("Datos Importados Correctamente");
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Error al importar datos, verifique su archivo csv." + data["error_entries"]);
+                            }
+
+
+                        }
+
+                    }
+                });
+
+            });
+
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
